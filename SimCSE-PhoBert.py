@@ -2,7 +2,7 @@ import torch
 from scipy.stats._mstats_basic import pearsonr, spearmanr
 from transformers import AutoModel, AutoTokenizer
 from pyvi.ViTokenizer import tokenize
-from difflib import SequenceMatcher
+
 
 def similarity(text1, text2):
     # Tokenize và chuyển đổi văn bản thành các vector embedding
@@ -23,7 +23,7 @@ def similarity(text1, text2):
 
     return cosine_sim.item()
 
-f = open("data1.txt", mode="r", encoding="utf-8")
+f = open("DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
 simchuyengia = []
 simtheobert = []
 lst1 = []
