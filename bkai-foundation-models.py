@@ -63,7 +63,8 @@ for i in range(len(lst1)):
 
 pearson = pearsonr(simtheobert, simchuyengia)
 spearman = spearmanr(simtheobert, simchuyengia)
-
+print(simtheobert)
+print(simchuyengia)
 print("Tương Quan Theo Phương Pháp PearSon : ", pearson[0])
 print("Tương Quan Theo Phương Pháp SpearMan : ", spearman[0])
 

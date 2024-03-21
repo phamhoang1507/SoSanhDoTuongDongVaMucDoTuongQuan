@@ -4,16 +4,6 @@ from transformers import AutoModel, AutoTokenizer
 from scipy.stats import pearsonr, spearmanr
 from difflib import SequenceMatcher
 
-
-def similarity(text1, text2):
-    # Tạo một đối tượng SequenceMatcher
-    seq_matcher = SequenceMatcher(None, text1, text2)
-
-    # Tính toán độ tương đồng
-    similarity_ratio = seq_matcher.ratio()
-
-    return similarity_ratio
-
 # Tải pre-trained model và tokenizer
 model_name = "vinai/phobert-base-v2"
 phobert = AutoModel.from_pretrained(model_name)
@@ -43,9 +33,9 @@ for s in f:
     vanban1 = ss[1]
     vanban2 = ss[2]
     # with  open("list1.txt", "a", encoding="utf-8") as f:
-    #     f.write(vanban1 + "\n \n")
+    #     f.write(vanban1 + "\n")
     # with  open("list2.txt", "a", encoding="utf-8") as f:
-    #     f.write(vanban2 + "\n \n")
+    #     f.write(vanban2 + "\n")
 
     lst1.append(vanban1)
     lst2.append(vanban2)
