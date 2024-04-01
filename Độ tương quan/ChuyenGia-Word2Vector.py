@@ -19,7 +19,7 @@ def word2vec(text1,text2):
     return similarity
 
 
-f = open("DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
+f = open("../Bộ dữ liệu/DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
 simchuyengia = []
 simtheoWord2Vec = []
 lst1 = []
@@ -36,11 +36,15 @@ for s in f:
     lst1.append(vanban1)
     lst2.append(vanban2)
     simchuyengia.append(temp)
+
 f.close()
 
 for i in range(len(lst1)):
     simWord2Vec= word2vec(lst1[i],lst2[i])
     simtheoWord2Vec.append(simWord2Vec)
+
+print(simtheoWord2Vec)
+print(simchuyengia)
 
 pearson = pearsonr(simtheoWord2Vec, simchuyengia)
 spearman = spearmanr(simtheoWord2Vec, simchuyengia)

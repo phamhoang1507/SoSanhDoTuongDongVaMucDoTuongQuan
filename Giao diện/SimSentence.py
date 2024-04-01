@@ -46,7 +46,7 @@ def on_enter(event):
 
 
 def openfile1():
-    f = open("list1.txt", mode="r", encoding="utf-8")
+    f = open("../Bộ dữ liệu/list1.txt", mode="r", encoding="utf-8")
     content= f.read()
     showContent(content)
 
@@ -71,7 +71,7 @@ text2 = Text(win, width=80, height=3, font=('Times New Roman', 12))
 text2.place(x=30, y=180)
 
 def openfile2():
-    f = open("list2.txt", mode="r", encoding="utf-8")
+    f = open("../Bộ dữ liệu/list2.txt", mode="r", encoding="utf-8")
     content = f.read()
     showContent(content)
 
@@ -330,7 +330,7 @@ def click():
                                     fg="white")
                     lb5.place(x=30, y=418)
 
-                    lb6 = Label(win, text=" " + str(simBkai), font=('Times New Roman', 14),
+                    lb6 = Label(win, text=" " + str(w2v), font=('Times New Roman', 14),
                                     bg="grey",
                                     fg="yellow")
                     lb6.place(x=490, y=419)
@@ -384,3 +384,6 @@ btnlm.bind("<Enter>", on_enter)
 btnlm.place(x=700, y=330)
 
 win.mainloop()
+
+#Ông Nguyễn Bá Thụ, cục trưởng Cục Kiểm lâm VN, thừa nhận tình trạng vận chuyển, buôn bán hổ và xương hổ trái phép vẫn đang diễn ra tại VN và đặc biệt sôi động ở Hà Nội. Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc
+#Ông Thụ, cục trưởng Cục Kiểm lâm VN, thừa nhận tình trạng vận chuyển, buôn bán hổ và xương hổ trái phép vẫn đang diễn ra tại VN và đặc biệt sôi động ở Hà Nội. Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam

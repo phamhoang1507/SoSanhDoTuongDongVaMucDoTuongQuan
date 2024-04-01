@@ -18,7 +18,7 @@ def get_vector(text):
     return vector
 
 
-f = open("DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
+f = open("../Bộ dữ liệu/DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
 simchuyengia = []
 simtheobert = []
 lst1 = []

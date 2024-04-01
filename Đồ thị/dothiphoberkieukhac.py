@@ -8,7 +8,8 @@ danhgiachuyengia=[0.75, 1.0, 0.5, 0.0, 0.5, 0.75, 0.0, 0.0, 0.5, 0.75, 0.25, 0.0
 
 causo = np.arange(1, 601)
 
+
 pp.plot(causo,danhgiasim,color='purple')
-#pp.plot(causo,danhgiachuyengia,color='red')
-# pp.plot1(causo,danhgiachuyengia)
+pp.plot(causo,danhgiachuyengia,color='red')
+# pp.plot(causo,danhgiachuyengia)
 pp.show()
