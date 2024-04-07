@@ -19,7 +19,7 @@ def word2vec(text1,text2):
     return similarity
 
 
-f = open("../Bộ dữ liệu/DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
+f = open("../Bộ dữ liệu/cg.txt", mode="r", encoding="utf-8")
 simchuyengia = []
 simtheoWord2Vec = []
 lst1 = []

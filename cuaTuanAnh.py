@@ -12,11 +12,9 @@ win = Tk()
 s = ttk.Style()
 s.theme_use('clam')
 win.title('Phần Mềm So Sánh Mức độ tương đồng giữa hai văn bản')
-win.geometry('970x520')
+win.geometry('950x470')
 win['bg'] = 'grey'
 win.attributes('-topmost', True)
-lbtieude =Label(win,text="So Sánh Độ Tương Đồng",font=('Times New Roman', 40), bg='grey', fg='white')
-lbtieude.place(x=200,y=5)
 
 def clear_labels_and_progressbars():
     # Xóa các Label và Progressbar
@@ -35,14 +33,14 @@ def on_enter(event):
     btnmf.config(cursor="hand2")
 
 lb1 = Label(win, text="Văn Bản Thứ Nhất", font=('Times New Roman', 12), bg='grey', fg='white')
-lb1.place(x=30, y=80)
+lb1.place(x=30, y=30)
 
 text1 = Text(win, width=80, height=3, font=('Times New Roman', 12))
-text1.place(x=30, y=110)
+text1.place(x=30, y=60)
 text1.focus()
 
 def openf():
-    f = open("../Bộ dữ liệu/BoDuLieuVanBanChuyenGia.json", mode="r", encoding="utf-8")
+    f = open("bodulieuVanBan.json", mode="r", encoding="utf-8")
     content = f.read()
     showContent(content)
 
@@ -67,15 +65,15 @@ s.configure("btnmf.TButton",
             bordercolor ="#FF9966"
             )
 btnmf = ttk.Button(win, text="Mở file văn bản", style="btnmf.TButton",command=openf)
-btnmf.place(x=700, y=110)
+btnmf.place(x=700, y=60)
 btnmf.bind("<Enter>", on_enter)
 
 lb2 = Label(win, text="Văn Bản Thứ Hai", font=('Times New Roman', 12), fg='white')
 lb2['bg'] = 'grey'
-lb2.place(x=30, y=200)
+lb2.place(x=30, y=150)
 
 text2 = Text(win, width=80, height=3, font=('Times New Roman', 12))
-text2.place(x=30, y=230)
+text2.place(x=30, y=180)
 
 # phobert-V2
 model_phobert = "vinai/phobert-base-v2"
@@ -236,160 +234,104 @@ def click():
         if maxssw2v < 0.8:
             maxssw2v = 0
 
-        tongpho  += maxsspho
         tongsim  += maxsssim
         tongbkai += maxssbkai
         tongw2v  += maxssw2v
 
-    tongpho = tongpho / (sopt1 + sopt2)
-    tongsim= tongsim/(sopt1+sopt2)
+    # tongsim= tongsim/(sopt1+sopt2)
     tongbkai =tongbkai /(sopt1+sopt2)
     tongw2v = tongw2v / (sopt1+sopt2)
-    tongpho = round(tongpho, 4)
-    tongsim = round(tongsim, 4)
-    tongbkai = round(tongbkai, 4)
-    tongw2v = round(tongw2v, 4)
+    print(tongw2v)
 
-    print(tongpho)
+    # def update_progress2(value):
+    #     if vb1.strip() != "" and vb2.strip() != "":
+    #         bar_simcse['value'] = value
+    #
+    #         if value < tongsim * 100:
+    #             win.after(20, update_progress2, value + 1)
+    #
+    #             if tongsim < 0.6:
+    #                 s.configure("sim.Horizontal.TProgressbar", foreground='red', background='red')
+    #                 lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
+    #                             fg="white")
+    #                 lb5.place(x=30, y=338)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongsim), font=('Times New Roman', 14),
+    #                             bg="grey",
+    #                             fg="white")
+    #                 lb6.place(x=490, y=339)
+    #             elif tongsim >= 0.6 and tongsim < 0.8:
+    #                 s.configure("sim.Horizontal.TProgressbar", foreground='red', background='yellow')
+    #                 lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
+    #                             fg="white")
+    #                 lb5.place(x=30, y=338)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongsim), font=('Times New Roman', 14),
+    #                             bg="grey",
+    #                             fg="white")
+    #                 lb6.place(x=490, y=339)
+    #
+    #             else:
+    #                 s.configure("sim.Horizontal.TProgressbar", foreground='red', background='green')
+    #                 lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
+    #                             fg="white")
+    #                 lb5.place(x=30, y=338)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongsim), font=('Times New Roman', 14),
+    #                             bg="grey",
+    #                             fg="white")
+    #                 lb6.place(x=490, y=339)
+    #             bar_simcse['value'] = tongsim * 100
+    #
+    #     else:
+    #         messagebox.showwarning("Thông báo",
+    #                                "Văn bản thứ nhất hoặc thứ hai đang bị trống. Vui lòng điền đầy đủ trước khi so sánh")
+    #
+    # bar_simcse = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
+    #                       style='sim.Horizontal.TProgressbar')
+    # bar_simcse.place(x=180, y=340, height="25")
+    # update_progress2(0)
 
-    def update_progress(value):
-        if vb1.strip() != "" and vb2.strip() != "":
-            bar_pho['value'] = value
-
-            if value < tongpho * 100:
-                win.after(20, update_progress, value + 1)
-
-                if tongpho < 0.6:
-                    s.configure("phobert.Horizontal.TProgressbar", foreground='red', background='red')
-                    lb5 = Label(win, text="PhoBert-V2: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=348)
-
-                    lb6 = Label(win, text=" " + str(tongpho)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=349)
-                elif tongpho >= 0.6 and tongpho < 0.8:
-                    s.configure("phobert.Horizontal.TProgressbar", foreground='red', background='yellow')
-                    lb5 = Label(win, text="PhoBert-V2: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=348)
-
-                    lb6 = Label(win, text=" " + str(tongpho)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=349)
-
-                else:
-                    s.configure("phobert.Horizontal.TProgressbar", foreground='red', background='green')
-                    lb5 = Label(win, text="PhoBert-V2: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=348)
-
-                    lb6 = Label(win, text=" " + str(tongpho)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=349)
-                bar_pho['value'] = tongpho * 100
-
-        else:
-            messagebox.showwarning("Thông báo", "Văn bản thứ nhất hoặc thứ hai đang bị trống. Vui lòng điền đầy đủ trước khi so sánh")
-
-
-    bar_pho = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
-                          style='phobert.Horizontal.TProgressbar')
-    bar_pho.place(x=180, y=350, height="25")
-    update_progress(0)
-
-    def update_progress2(value):
-        if vb1.strip() != "" and vb2.strip() != "":
-            bar_simcse['value'] = value
-
-            if value < tongsim * 100:
-                win.after(20, update_progress2, value + 1)
-
-                if tongsim < 0.6:
-                    s.configure("sim.Horizontal.TProgressbar", foreground='red', background='red')
-                    lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=388)
-
-                    lb6 = Label(win, text=" " + str(tongsim)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=389)
-                elif tongsim >= 0.6 and tongsim < 0.8:
-                    s.configure("sim.Horizontal.TProgressbar", foreground='red', background='yellow')
-                    lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=388)
-
-                    lb6 = Label(win, text=" " + str(tongsim)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=389)
-
-                else:
-                    s.configure("sim.Horizontal.TProgressbar", foreground='red', background='green')
-                    lb5 = Label(win, text="SimCSE: ", font=('Times New Roman', 14), bg="grey",
-                                fg="white")
-                    lb5.place(x=30, y=388)
-
-                    lb6 = Label(win, text=" " + str(tongsim)+"/1.0", font=('Times New Roman', 14),
-                                bg="grey",
-                                fg="white")
-                    lb6.place(x=490, y=389)
-                bar_simcse['value'] = tongsim * 100
-
-        else:
-            messagebox.showwarning("Thông báo",
-                                   "Văn bản thứ nhất hoặc thứ hai đang bị trống. Vui lòng điền đầy đủ trước khi so sánh")
-
-    bar_simcse = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
-                          style='sim.Horizontal.TProgressbar')
-    bar_simcse.place(x=180, y=390, height="25")
-    update_progress2(0)
-
-    def update_progress3(value):
-        if vb1 != "" and vb2.strip() != "":
-            bar_bkai['value'] = value
-            if value < tongbkai * 100:
-                win.after(20, update_progress3, value + 1)
-                if tongbkai <0.6:
-                    s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='red')
-                    lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
-                                    fg="white")
-                    lb5.place(x=30, y=428)
-
-                    lb6 = Label(win, text=" " + str(tongbkai)+"/1.0", font=('Times New Roman', 14),
-                                    bg="grey",
-                                    fg="white")
-                    lb6.place(x=490, y=429)
-                elif tongbkai >=0.6 and tongbkai <0.8:
-                    s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='yellow')
-                    lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
-                                    fg="white")
-                    lb5.place(x=30, y=428)
-
-                    lb6 = Label(win, text=" " + str(tongbkai)+"/1.0", font=('Times New Roman', 14),
-                                    bg="grey",
-                                    fg="white")
-                    lb6.place(x=490, y=429)
-                else:
-                    s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='green')
-                    lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
-                                    fg="white")
-                    lb5.place(x=30, y=428)
-
-                    lb6 = Label(win, text=" " + str(tongbkai)+"/1.0", font=('Times New Roman', 14),
-                                    bg="grey",
-                                    fg="white")
-                    lb6.place(x=490, y=429)
-                bar_bkai['value'] = tongbkai * 100
-    bar_bkai = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
-                              style='bkai.Horizontal.TProgressbar')
-    bar_bkai.place(x=180, y=430,height="25")
-    update_progress3(0)
+    # def update_progress3(value):
+    #     if vb1 != "" and vb2.strip() != "":
+    #         bar_bkai['value'] = value
+    #         if value < tongbkai * 100:
+    #             win.after(20, update_progress3, value + 1)
+    #             if tongbkai <0.6:
+    #                 s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='red')
+    #                 lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
+    #                                 fg="white")
+    #                 lb5.place(x=30, y=378)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongbkai), font=('Times New Roman', 14),
+    #                                 bg="grey",
+    #                                 fg="white")
+    #                 lb6.place(x=490, y=379)
+    #             elif tongbkai >=0.6 and tongbkai <0.8:
+    #                 s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='yellow')
+    #                 lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
+    #                                 fg="white")
+    #                 lb5.place(x=30, y=378)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongbkai), font=('Times New Roman', 14),
+    #                                 bg="grey",
+    #                                 fg="white")
+    #                 lb6.place(x=490, y=379)
+    #             else:
+    #                 s.configure("bkai.Horizontal.TProgressbar", foreground='red', background='green')
+    #                 lb5 = Label(win, text="SimBkai: ", font=('Times New Roman', 14), bg="grey",
+    #                                 fg="white")
+    #                 lb5.place(x=30, y=378)
+    #
+    #                 lb6 = Label(win, text=" " + str(tongbkai), font=('Times New Roman', 14),
+    #                                 bg="grey",
+    #                                 fg="white")
+    #                 lb6.place(x=490, y=379)
+    #             bar_bkai['value'] = tongbkai * 100
+    # bar_bkai = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
+    #                           style='bkai.Horizontal.TProgressbar')
+    # bar_bkai.place(x=180, y=380,height="25")
+    # update_progress3(0)
 
     def update_progress4(value):
         if vb1 != "" and vb2.strip() != "":
@@ -400,36 +342,36 @@ def click():
                     s.configure("w2v.Horizontal.TProgressbar", foreground='red', background='red')
                     lb5 = Label(win, text="Word2Vec: ", font=('Times New Roman', 14), bg="grey",
                                     fg="white")
-                    lb5.place(x=30, y=468)
+                    lb5.place(x=30, y=418)
 
-                    lb6 = Label(win, text=" " + str(tongw2v)+"/1.0", font=('Times New Roman', 14),
+                    lb6 = Label(win, text=" " + str(tongw2v), font=('Times New Roman', 14),
                                     bg="grey",
                                     fg="white")
-                    lb6.place(x=490, y=469)
+                    lb6.place(x=490, y=419)
                 elif tongw2v >=0.6 and tongw2v <0.8:
                     s.configure("w2v.Horizontal.TProgressbar", foreground='red', background='yellow')
                     lb5 = Label(win, text="Word2Vec: ", font=('Times New Roman', 14), bg="grey",
                                     fg="white")
-                    lb5.place(x=30, y=468)
+                    lb5.place(x=30, y=418)
 
-                    lb6 = Label(win, text=" " + str(tongw2v)+"/1.0", font=('Times New Roman', 14),
+                    lb6 = Label(win, text=" " + str(tongw2v), font=('Times New Roman', 14),
                                     bg="grey",
                                     fg="white")
-                    lb6.place(x=490, y=469)
+                    lb6.place(x=490, y=419)
                 else:
                     s.configure("w2v.Horizontal.TProgressbar", foreground='red', background='green')
                     lb5 = Label(win, text="Word2Vec: ", font=('Times New Roman', 14), bg="grey",
                                     fg="white")
-                    lb5.place(x=30, y=468)
+                    lb5.place(x=30, y=418)
 
-                    lb6 = Label(win, text=" " + str(tongw2v)+"/1.0", font=('Times New Roman', 14),
+                    lb6 = Label(win, text=" " + str(tongw2v), font=('Times New Roman', 14),
                                     bg="grey",
                                     fg="white")
-                    lb6.place(x=490, y=469)
+                    lb6.place(x=490, y=419)
                 bar_w2v['value'] = tongw2v * 100
     bar_w2v = ttk.Progressbar(win, orient="horizontal", length=300, mode='determinate',
                               style='w2v.Horizontal.TProgressbar')
-    bar_w2v.place(x=180, y=470,height="25")
+    bar_w2v.place(x=180, y=420,height="25")
     update_progress4(0)
 
 s.configure("btnss.TButton",
@@ -440,11 +382,10 @@ s.configure("btnss.TButton",
             borderwidth=2,
             relief="solid",
             bordercolor ="#33CC66",
-
             )
 
 btnss = ttk.Button(win, text="So sánh",command=click, style="btnss.TButton")
-btnss.place(x=700, y=230)
+btnss.place(x=700, y=130)
 btnss.bind("<Enter>", on_enter)
 
 def clear():
@@ -463,7 +404,7 @@ s.configure("btncl.TButton",
             bordercolor="#FF3333"
             )
 btncl = ttk.Button(win, text="Làm mới", style="btncl.TButton",command=clear)
-btncl.place(x=700, y=350)
+btncl.place(x=700, y=200)
 btncl.bind("<Enter>", on_enter)
 
 win.mainloop()

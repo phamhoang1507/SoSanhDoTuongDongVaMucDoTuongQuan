@@ -27,7 +27,7 @@ win.geometry('950x470')
 win['bg'] = 'grey'
 win.attributes('-topmost', True)
 
-lb1 = Label(win, text="Văn Bản Thứ Nhất", font=('Times New Roman', 12), bg='grey', fg='white')
+lb1 = Label(win, text="Câu Thứ Nhất", font=('Times New Roman', 12), bg='grey', fg='white')
 lb1.place(x=30, y=30)
 
 text1 = Text(win, width=80, height=3, font=('Times New Roman', 12))
@@ -59,11 +59,11 @@ s.configure("btnopen1.TButton",
             relief="solid",
             bordercolor ="#FF9966"
             )
-btnopen1 = ttk.Button(win, text="Mở file văn bản thứ nhất",command=openfile1, style="btnopen1.TButton")
+btnopen1 = ttk.Button(win, text="Mở file dữ liệu thứ nhất",command=openfile1, style="btnopen1.TButton")
 btnopen1.place(x=700, y=70)
 btnopen1.bind("<Enter>", on_enter)
 
-lb2 = Label(win, text="Văn Bản Thứ Hai", font=('Times New Roman', 12), fg='white')
+lb2 = Label(win, text="Câu Thứ Hai", font=('Times New Roman', 12), fg='white')
 lb2['bg'] = 'grey'
 lb2.place(x=30, y=150)
 
@@ -84,7 +84,7 @@ s.configure("btnopen2.TButton",
             relief="solid",
             bordercolor ="#FF9966"
             )
-btnopen2 = ttk.Button(win, text="Mở file văn bản thứ hai", command=openfile2, style="btnopen2.TButton")
+btnopen2 = ttk.Button(win, text="Mở file dữ liệu thứ hai", command=openfile2, style="btnopen2.TButton")
 btnopen2.place(x=700, y=190)
 btnopen2.bind("<Enter>", on_enter)
 def showContent(content):

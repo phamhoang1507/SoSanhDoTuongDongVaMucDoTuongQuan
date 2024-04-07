@@ -27,7 +27,7 @@ win.geometry('970x520')
 win['bg'] = 'grey'
 win.attributes('-topmost', True)
 
-lb1 = Label(win, text="Văn Bản Thứ Nhất", font=('Times New Roman', 12), bg='grey', fg='white')
+lb1 = Label(win, text="Câu Thứ Nhất", font=('Times New Roman', 12), bg='grey', fg='white')
 lb1.place(x=30, y=80)
 
 lbtieude =Label(win,text="So Sánh Độ Tương Đồng",font=('Times New Roman', 40), bg='grey', fg='white')
@@ -62,11 +62,11 @@ s.configure("btnopen1.TButton",
             relief="solid",
             bordercolor ="#FF9966"
             )
-btnopen1 = ttk.Button(win, text="Mở file văn bản thứ nhất",command=openfile1, style="btnopen1.TButton")
+btnopen1 = ttk.Button(win, text="Mở file dữ liệu thứ nhất",command=openfile1, style="btnopen1.TButton")
 btnopen1.place(x=720, y=110)
 btnopen1.bind("<Enter>", on_enter)
 
-lb2 = Label(win, text="Văn Bản Thứ Hai", font=('Times New Roman', 12), fg='white')
+lb2 = Label(win, text="Câu Thứ Hai", font=('Times New Roman', 12), fg='white')
 lb2['bg'] = 'grey'
 lb2.place(x=30, y=200)
 
@@ -87,7 +87,7 @@ s.configure("btnopen2.TButton",
             relief="solid",
             bordercolor ="#FF9966"
             )
-btnopen2 = ttk.Button(win, text="Mở file văn bản thứ hai", command=openfile2, style="btnopen2.TButton")
+btnopen2 = ttk.Button(win, text="Mở file dữ liệu thứ hai", command=openfile2, style="btnopen2.TButton")
 btnopen2.place(x=720, y=230)
 btnopen2.bind("<Enter>", on_enter)
 def showContent(content):
@@ -185,7 +185,7 @@ def laydl():
     vb1 = text1.get("1.0", "end-1c").strip()
     vb2 = text2.get("1.0", "end-1c").strip()
     simcgia=""
-    f = open("DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
+    f = open("../Bộ dữ liệu/BoDuLieuCauDoCGDanhGia.txt", mode="r", encoding="utf-8")
     for s in f:
         s = s.replace('"', '')
         ss = s.split('\t')
@@ -193,7 +193,7 @@ def laydl():
             print(s)
             continue
         if vb1 == ss[1] and vb2 == ss[2]:
-             simcgia = "/"+int(ss[3]) / 4.0
+             simcgia = "/"+str(int(ss[3]) / 4.0)
     f.close()
     return str(simcgia)
 def click():
@@ -203,6 +203,10 @@ def click():
     simCSE = simCSE_Phobert(vb1, vb2)
     simBkai= bkai(vb1,vb2)
     w2v=word2vec(vb1,vb2)
+    simPhobertV2 = round(simPhobertV2, 4)
+    simCSE = round(simCSE, 4)
+    simBkai = round(simBkai, 4)
+    w2v = round(w2v, 4)
     laydl()
 
 

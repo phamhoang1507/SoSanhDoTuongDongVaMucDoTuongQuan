@@ -23,7 +23,7 @@ def similarity(text1, text2):
 
     return cosine_sim.item()
 
-f = open("../Bộ dữ liệu/DuLieuChuyenGia.txt", mode="r", encoding="utf-8")
+f = open("../Bộ dữ liệu/cg.txt", mode="r", encoding="utf-8")
 simchuyengia = []
 simtheobert = []
 lst1 = []

@@ -1,9 +1,6 @@
-from scipy.stats import pearsonr, spearmanr
-
 from transformers import AutoTokenizer, AutoModel
 import torch
 from sklearn.metrics.pairwise import cosine_similarity
-
 
 # Mean Pooling - Sử dụng attention mask để tính trung bình đúng
 def mean_pooling(model_output, attention_mask):
@@ -11,14 +8,14 @@ def mean_pooling(model_output, attention_mask):
     input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
     return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
 
-def similarity(text1, text2):
+def similarity(sen1, sen2):
     # Tải mô hình từ HuggingFace Hub
     tokenizer = AutoTokenizer.from_pretrained('bkai-foundation-models/vietnamese-bi-encoder')
     model = AutoModel.from_pretrained('bkai-foundation-models/vietnamese-bi-encoder')
 
     # Token hóa các câu
-    encoded_input = tokenizer(text1, padding=True, truncation=True, return_tensors='pt')
-    encoded_input2 = tokenizer(text2, padding=True, truncation=True, return_tensors='pt')
+    encoded_input = tokenizer(sen1, padding=True, truncation=True, return_tensors='pt')
+    encoded_input2 = tokenizer(sen2, padding=True, truncation=True, return_tensors='pt')
 
     # Tính toán các token embeddings
     with torch.no_grad():
@@ -37,9 +34,13 @@ def similarity(text1, text2):
 
     return similarity.item()
 
-txt1="Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam."
-txt2="Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc."
+sen1="Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam."
+sen2="Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc."
 
 
-result = similarity(txt1, txt2)
-print(result)
+result = similarity(sen1, sen2)
+
+print("Câu 1: " ,sen1)
+print("Câu 2: " ,sen2)
+print("Độ tương đồng: ",result)
+

@@ -1,11 +1,10 @@
 from gensim.models import Word2Vec
-from scipy.stats import pearsonr, spearmanr
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-def word2vec(text1,text2):
-    tokens1 = text1.split()
-    tokens2 = text2.split()
+def word2vec(sen1,sen2):
+    tokens1 = sen1.split()
+    tokens2 = sen2.split()
 
     # Xây dựng mô hình Word2Vec
     model = Word2Vec([tokens1, tokens2], vector_size=100, window=5, min_count=1, workers=4)
@@ -18,8 +17,10 @@ def word2vec(text1,text2):
     similarity = cosine_similarity([vector1], [vector2])[0][0]
     return similarity
 
-txt1="Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam."
-txt2="Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc."
+sen1="Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam."
+sen2="Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc."
 
-simWord2Vec= word2vec(txt1,txt2)
-print(simWord2Vec)
+simWord2Vec= word2vec(sen1,sen2)
+print("Câu 1: " ,sen1)
+print("Câu 2: " ,sen2)
+print("Độ tương đồng: ",simWord2Vec)
