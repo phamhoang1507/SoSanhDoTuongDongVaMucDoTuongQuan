@@ -16,11 +16,10 @@ def word2vec(sen1,sen2):
     # Tính mức độ tương đồng sử dụng cosine similarity
     similarity = cosine_similarity([vector1], [vector2])[0][0]
     return similarity
-
 sen1="Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam."
 sen2="Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc."
-
 simWord2Vec= word2vec(sen1,sen2)
 print("Câu 1: " ,sen1)
 print("Câu 2: " ,sen2)
+simWord2Vec=round(simWord2Vec,4)
 print("Độ tương đồng: ",simWord2Vec)

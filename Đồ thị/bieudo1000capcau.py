@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 diem = np.array([0, 1, 2, 3, 4])
-soluong = np.array([216, 201, 146, 202, 234])
+soluong = np.array([208, 222, 148, 260, 162])
 
 # # Mức mới
 new_levels = np.array([0, 50, 100, 150, 200, 250,300])

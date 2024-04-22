@@ -3,12 +3,10 @@ import torch
 from transformers import AutoModel, AutoTokenizer
 from scipy.stats import pearsonr, spearmanr
 from difflib import SequenceMatcher
-
 # Tải pre-trained model và tokenizer
 model_name = "vinai/phobert-base-v2"
 phobert = AutoModel.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-
 # Hàm để chuyển đoạn văn thành vector
 def get_vector(sen):
     input_ids = tokenizer.encode(sen, return_tensors="pt")
@@ -24,4 +22,5 @@ vector2 = get_vector(sen2)
 similarity = cosine_similarity([vector1], [vector2])[0][0]
 print("Câu 1: " ,sen1)
 print("Câu 2: " ,sen2)
+similarity=round(similarity,4)
 print("Độ tương đồng: ",similarity)

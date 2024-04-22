@@ -412,3 +412,7 @@ win.mainloop()
 
 #Ông Nguyễn Bá Thụ, cục trưởng Cục Kiểm lâm VN, thừa nhận tình trạng vận chuyển, buôn bán hổ và xương hổ trái phép vẫn đang diễn ra tại VN và đặc biệt sôi động ở Hà Nội. Thật tuyệt vời, các khối hình đều giống nhau giống nhau một cách đáng kinh ngạc
 #Ông Thụ, cục trưởng Cục Kiểm lâm VN, thừa nhận tình trạng vận chuyển, buôn bán hổ và xương hổ trái phép vẫn đang diễn ra tại VN và đặc biệt sôi động ở Hà Nội. Thật kinh ngạc, 42 khối vuông hình sắc cạnh không hơn kém nhau 1 gam
+
+# Người Mã Liềng sinh sống ở vùng rừng giáp Lào, thuộc miền tây Hà Tĩnh, trải qua cuộc sống văn hóa độc đáo, nơi mà những đồng bào này sáng tạo những nhạc cụ như ống nứa và đàn trbon. Cuộc sống của họ đặc biệt, ẩn mình trên đỉnh núi Ka Đay, trong bản Rào Tre, nổi bật với những đặc điểm riêng biệt và tính kín đáo. Vào năm 1958, một đội chiến sĩ biên phòng phát hiện nhóm người Mã Liềng đang sống giấu kín trong rừng
+
+# Người Mã Liềng ở vùng rừng giáp Lào thuộc miền tây Hà Tĩnh sống cuộc sống văn hóa độc đáo, nơi chỉ có ống nứa và đàn trbon làm nhạc cụ. Cuộc sống của họ, ẩn mình trên đỉnh núi Ka Đay, trong bản Rào Tre, đầy những nét độc đáo và kín đáo. Năm 1958, chiến sĩ biên phòng phát hiện nhóm người Mã Liềng sống chui rúc trong rừng. Đó là lúc ông Hồ Hiến bắt đầu "cắm bản" và ở lại hỗ trợ họ suốt 24 năm
